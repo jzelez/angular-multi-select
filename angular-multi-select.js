@@ -56,6 +56,9 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
             orientation     : '@',
             selectionMode   : '@',
             searchPlaceholder : '@',
+            selectAllLabel  : '@',
+            selectNoneLabel : '@',
+            resetLabel      : '@',
                                                          
             // settings based on input model property 
             tickProperty    : '@',
@@ -77,9 +80,9 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
                     '<form>' + 
                         '<div class="helperContainer" ng-if="displayHelper( \'filter\' ) || displayHelper( \'all\' ) || displayHelper( \'none\' ) || displayHelper( \'reset\' )">' +
                             '<div class="line" ng-if="displayHelper( \'all\' ) || displayHelper( \'none\' ) || displayHelper( \'reset\' )">' +
-                                '<button type="button" ng-click="select( \'all\',   $event );"    class="helperButton" ng-if="!isDisabled && displayHelper( \'all\' )">   &#10003;&nbsp; Select All</button> ' +
-                                '<button type="button" ng-click="select( \'none\',  $event );"   class="helperButton" ng-if="!isDisabled && displayHelper( \'none\' )">  &times;&nbsp; Select None</button>' +
-                                '<button type="button" ng-click="select( \'reset\', $event );"  class="helperButton" ng-if="!isDisabled && displayHelper( \'reset\' )" style="float:right">&#8630;&nbsp; Reset</button>' +
+                                '<button type="button" ng-click="select( \'all\',   $event );"    class="helperButton" ng-if="!isDisabled && displayHelper( \'all\' )">   &#10003;&nbsp; {{ selectAllLabel }}</button> ' +
+                                '<button type="button" ng-click="select( \'none\',  $event );"   class="helperButton" ng-if="!isDisabled && displayHelper( \'none\' )">  &times;&nbsp; {{ selectNoneLabel }}</button>' +
+                                '<button type="button" ng-click="select( \'reset\', $event );"  class="helperButton" ng-if="!isDisabled && displayHelper( \'reset\' )" style="float:right">&#8630;&nbsp; {{ resetLabel }}</button>' +
                             '</div>' +
                             '<div class="line" style="position:relative" ng-if="displayHelper( \'filter\' )">' +
                                 '<input placeholder="{{ searchPlaceholder }}" type="text" ng-click="select( \'filter\', $event )" ng-model="inputLabel.labelFilter" ng-change="updateFilter();$scope.getFormElements();" class="inputFilter" />' +
@@ -123,6 +126,9 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
             $scope.tabIndex         = 0;
             $scope.clickedItem      = null;
             $scope.searchPlaceholder = $scope.searchPlaceholder || 'Search ...';
+            $scope.selectAllLabel   = $scope.selectAllLabel || 'Select All';
+            $scope.selectNoneLabel  = $scope.selectNoneLabel || 'Select None';
+            $scope.resetLabel       = $scope.resetLabel || 'Reset';
             prevTabIndex            = 0;
             helperItems             = [];
             helperItemsLength       = 0;
