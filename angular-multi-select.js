@@ -55,7 +55,7 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
             maxLabels       : '@',
             orientation     : '@',
             selectionMode   : '@',
-            searchPlaceholder : '@'
+            searchPlaceholder : '@',
                                                          
             // settings based on input model property 
             tickProperty    : '@',
